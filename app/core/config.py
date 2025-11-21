@@ -2,7 +2,7 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     APP_NAME: str = "My FastAPI App"
-    DATABASE_URL: str = "mysql+pymysql://ivan:ivan@localhost/summarization_db"
+    DATABASE_URL: str = "mysql+aiomysql://root:ivan@localhost/recom_web"
     SECRET_KEY: str = "supersecretkey"
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60

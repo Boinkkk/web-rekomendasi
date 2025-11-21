@@ -1,4 +1,9 @@
 from fastapi import FastAPI, HTTPException
+from .schemas import wisata
+from sqlalchemy.ext.asyncio import AsyncSession
+from contextlib import asynccontextmanager
+from app.core.database import get_a
+
 
 app = FastAPI()
 
@@ -26,3 +31,9 @@ def get_wisata_by_id(wisata_id: int):
     if not wisata:
         raise HTTPException(status_code=404, detail="Wisata not found")
     return {"wisata": wisata}
+
+@app.post("/wisata")
+async def create_wisata(wisata: wisata.wisataCreate, session: AsyncSession = Depends(get_a)):
+    post = Post()
+
+    
