@@ -11,8 +11,8 @@ const Wisata = () => {
   useEffect(() => {
     async function fetchWisata() {
       try {
-        const data = await apiFetch('wisata');
-        setDetailWisata(data.wisata);
+        const data = await apiFetch('wisata/1/recommendations');
+        setDetailWisata(data.recommendations);
       } catch (err) {
         setError((err as Error).message);
       }

@@ -1,5 +1,7 @@
 import torch
 from transformers import AutoTokenizer, AutoModel
+import time
+
 
 MODEL_NAME = "indobenchmark/indobert-base-p1"
 
@@ -28,7 +30,10 @@ def get_embedding(texts, batch_size=32, max_length=128):
     return torch.cat(embeddings, dim=0).cpu().tolist()
 
 if __name__ == "__main__":
+    print("Testing get_embedding function...")
+    start_time = time.time()
     sample_texts = ["Santai Indah Murah"]
     embs = get_embedding(sample_texts)
     print(embs)
-    
+    end_time = time.time()
+    print(f"Elapsed time: {end_time - start_time} seconds")

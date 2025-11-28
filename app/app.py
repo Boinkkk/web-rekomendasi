@@ -7,6 +7,8 @@ from app.core.database import get_async_session
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.models.destinations import Destination
 from fastapi.middleware.cors import CORSMiddleware
+from app.services.get_embedding import get_embedding
+from sqlalchemy import text
 
 
 app = FastAPI()
@@ -40,6 +42,19 @@ async def get_wisata_by_id(wisata_id: int, db: AsyncSession = Depends(get_async_
     if not wisata:
         raise HTTPException(status_code=404, detail="Wisata not found")
     return {"wisata": wisata}
+
+@app.get("/api/v1/wisata/{user_id}/recommendations")
+async def get_recommendations(user_id: int, db: AsyncSession = Depends(get_async_session)):
+    vector = get_embedding(["Murah, Sepi, Dekat"])[0]
+    vector_str = "[" + ",".join(str(v) for v in vector) + "]"
+    query_sql = text(f"""select d.title, d.address, d.description, d.latitude, d.longitude, d.phone, d.website, d.operating_hours, d.ticket_price, d.total_rating, d.total_review, emb.embedding <=> '{vector_str}'::vector
+    AS cosine_distance from destination_content_embeddings emb join destinations d on emb.destination_id = d.id order by cosine_distance DESC""")
+    
+    result = await db.execute(query_sql)
+    recommendations = result.mappings().all()
+    if not recommendations:
+        raise HTTPException(status_code=404, detail="No recommendations found")
+    return {"user_id": user_id, "recommendations": recommendations}
 
 @app.post("/api/v1/wisata")
 async def create_wisata(wisata: wisata.wisataCreate, session: AsyncSession = Depends(get_async_session)):
