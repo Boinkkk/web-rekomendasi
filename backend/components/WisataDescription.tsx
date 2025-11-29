@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { use, useRef } from 'react';
 import { Star, MapPin, Heart, Gift, ChevronLeft, ChevronRight, ShieldCheck, ShoppingBag, Utensils } from 'lucide-react';
-
+import { href } from 'react-router';
 interface HotelDetailProps {
   title: string;
   total_review: number;
@@ -20,8 +20,11 @@ function extractProvinceCountry(address: string): string {
 }
 
 
+
 const HotelDetail = ({title, total_review,total_rating, ticket_price, address}: HotelDetailProps) => {
+  
   return (
+
     <div className="max-w-7xl mx-auto p-4 font-sans bg-white border-b border-gray-200">
       <div className="text-xs text-gray-400 mb-4 flex gap-1">
         <span>Pantai</span>
@@ -90,9 +93,14 @@ const HotelDetail = ({title, total_review,total_rating, ticket_price, address}: 
 
       <div className="mt-6 border-b border-gray-200">
         <div className="flex gap-8">
-          {['Info Umum', 'Review', 'Fasilitas Populer', 'Lokasi', 'Tentang'].map((tab, index) => (
+          {['Info Umum', 'Reviews', 'Fasilitas Populer', 'Lokasi', 'Tentang'].map((tab, index) => (
             <button 
               key={tab}
+              onClick={() => {
+                const id = tab.toLowerCase().replace(/\s+/g, '');
+                const el = document.getElementById(id);
+                el?.scrollIntoView({ behavior: "smooth" });
+              }}
               className={`pb-3 text-sm font-bold transition-colors ${index === 0 ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
             >
               {tab}

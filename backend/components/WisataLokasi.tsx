@@ -36,7 +36,7 @@ const WisataLokasi = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto p-6 bg-white font-sans">
+    <div id="lokasi" className="max-w-7xl mx-auto p-6 bg-white font-sans">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold text-gray-900">Lokasi</h2>
         <button className="text-blue-600 font-bold text-sm hover:underline">

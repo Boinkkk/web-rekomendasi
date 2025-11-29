@@ -47,7 +47,7 @@ const WisataFasilitas = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto p-6 bg-white font-sans text-gray-800 border-b border-gray-300">
+    <div id="fasilitaspopuler" className="max-w-7xl mx-auto p-6 bg-white font-sans text-gray-800 border-b border-gray-300">
       <div className="pb-8 border-b border-gray-200">
         <h2 className="text-xl font-bold mb-6 text-gray-900">Fasilitas Populer</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-4">

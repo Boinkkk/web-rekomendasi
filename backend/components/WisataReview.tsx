@@ -70,7 +70,7 @@ const WisataReview = ({ reviews, total_review, total_rating }: WisataReviewProps
  
 
   return (
-    <div className="max-w-7xl mx-auto p-6 font-sans bg-white border-b border-gray-300">
+    <div id="reviews" className="max-w-7xl mx-auto p-6 font-sans bg-white border-b border-gray-300">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold text-gray-900">Review</h2>
         <button className="text-blue-600 font-bold text-sm hover:underline">
