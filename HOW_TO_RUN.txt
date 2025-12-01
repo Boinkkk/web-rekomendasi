@@ -1,0 +1,15 @@
+setelah git clone ->
+
+Buat terminal ->
+cd backend
+npm install
+npm run dev
+
+buat terminal baru ->
+cd app (pastikan path nya akhiran app)
+pip install -r requirements.txt
+
+## MASUK ENVIROMEMT##
+cd ..
+ketik di terminal -> app\.venv\Scripts\activate.ps1
+python main.py
