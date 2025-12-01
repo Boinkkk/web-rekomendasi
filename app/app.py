@@ -230,8 +230,8 @@ async def get_reviews(destination_id: int, db: AsyncSession = Depends(get_async_
     
     result = await db.execute(query_sql)
     reviews = result.mappings().all()
-    if not reviews:
-        raise HTTPException(status_code=404, detail="No reviews found")
+    # if not reviews:
+    #     raise HTTPException(status_code=404, detail="No reviews found")
     return {"destination_id": destination_id, "reviews": reviews}
 
 @app.post("/api/v1/wisata")
